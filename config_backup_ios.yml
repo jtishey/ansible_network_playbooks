@@ -1,0 +1,10 @@
+---
+- hosts: cisco-ios
+  gather_facts: no
+  connection: local
+
+  tasks:
+  - name: Backing up Cisco IOS configurations
+    ios_config:
+      authorize: yes
+      backup: yes
