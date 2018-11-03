@@ -2,7 +2,7 @@
 - name: Get Device Facts 
   hosts: juniper
   roles:
-  - Juniper.junos
+  - juniper.junos
   connection: local
   gather_facts: no
 
