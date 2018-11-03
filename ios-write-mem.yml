@@ -1,0 +1,13 @@
+---
+- hosts: cisco-ios
+  gather_facts: no
+  connection: local
+ 
+  tasks:
+  - name: WRITE MEMORY
+    ios_command:
+      commands:
+        - wr mem 
+    register: write
+ 
+  - debug: var=write.stdout_lines
