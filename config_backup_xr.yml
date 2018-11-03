@@ -1,0 +1,9 @@
+---
+- hosts: cisco-xr
+  gather_facts: no
+  connection: local
+
+  tasks:
+  - name: Backing up Cisco XR active configuration
+    iosxr_config:
+      backup: yes
