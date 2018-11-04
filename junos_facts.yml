@@ -1,6 +1,6 @@
 ---
 - name: Get Device Facts 
-  hosts: juniper
+  hosts: {{ my_hosts }}
   roles:
   - juniper.junos
   connection: local
@@ -11,5 +11,5 @@
     junos_get_facts: 
     register: junos
 
-#  - name: Show Version
-#    debug: msg="{{ junos.facts.version }}"
+  - name: Show Version
+    debug: msg="{{ junos.facts.version }}"
