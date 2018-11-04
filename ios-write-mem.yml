@@ -1,10 +1,10 @@
 ---
-- hosts: cisco-ios
+- hosts: {{ my_hosts }}
   gather_facts: no
   connection: local
  
   tasks:
-  - name: WRITE MEMORY
+  - name: Execute "write mem" on device
     ios_command:
       commands:
         - wr mem 
