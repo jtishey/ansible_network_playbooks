@@ -9,9 +9,9 @@
     gather_facts: no
     tasks:
       - set_fact:
-        hosts_confirmed: no
-      delegate_t0: localhost
-      delegate_facts: true
+          hosts_confirmed: no
+        delegate_t0: localhost
+        delegate_facts: true
 
   - name: Verify Hosts
     hosts: localhost
