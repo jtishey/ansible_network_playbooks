@@ -1,5 +1,5 @@
 ---
-- hosts: vSRX1
+- hosts: juniper
   gather_facts: no
   connection: local
 
