@@ -1,31 +1,26 @@
 ---
-- hosts: "{{ my_hosts }}"
+- name: Check hosts
+  hosts: "{{ target_hosts }}"
   gather_facts: no
-  connection: local
-
   tasks:
-  - name: Check Hosts
-    hosts: "{{ my_hosts }}"
-    gather_facts: no
-    tasks:
-      - set_fact:
-          hosts_confirmed: no
-        delegate_t0: localhost
-        delegate_facts: true
+    - set_fact:
+        hosts_confirmed: true
+      delegate_to: localhost
+      delegate_facts: true
 
-  - name: Verify Hosts
-    hosts: localhost
-    gather_facts: no
-    tasks:
-      - assert:
+- name: Verify hosts
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - assert:
         that: hosts_confirmed | default(false)
 
-  - name: Setting ISIS overload - JUNOS
-    junos_config:
-      lines:
-        - delete protocols isis overload timeout
-        - set protocols isis overload advertise-high-metrics
-        - set protocols isis interface lo0.0 level 2 metric 500000
-        - set protocols isis interface lo0.0 level 2 ipv6-unicast-metric 500000
-    when: ansible_network_os == "junos"
+- name: Setting ISIS overload - JUNOS
+  junos_config:
+    lines: 
+      - delete protocols isis overload timeout
+      - set protocols isis overload advertise-high-metrics
+      - set protocols isis interface lo0.0 level 2 metric 500000
+      - set protocols isis interface lo0.0 level 2 ipv6-unicast-metric 500000
+  when: ansible_network_os == "junos"
 
