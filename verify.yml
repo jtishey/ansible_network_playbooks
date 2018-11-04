@@ -8,8 +8,8 @@
       hosts_confirmed: true
     delegate_to: localhost
     delegate_facts: true
-    - assert:
-      that: hosts_confirmed | default(false)
+  - assert:
+    that: hosts_confirmed | default(false)
 
   - name: Setting ISIS overload - JUNOS
     junos_config:
