@@ -1,0 +1,199 @@
+# TiMOS-B-13.0.R5 both/i386 ALCATEL SR 7750 Copyright (c) 2000-2015 Alcatel-Lucent.
+
+# All rights reserved. All use subject to applicable license agreements.
+
+# Built on Wed Sep 23 17:05:55 PDT 2015 by builder in /rel13.0/b1/R5/panos/main
+
+
+# Generated SUN NOV 04 15:40:27 2018 UTC
+
+exit all
+configure
+#--------------------------------------------------
+echo "System Configuration"
+#--------------------------------------------------
+    system
+        name "7750-1"
+        chassis-mode d
+        dns
+        exit
+        snmp
+        exit
+        time
+            sntp
+                shutdown
+            exit
+            zone UTC 
+        exit
+        thresholds
+            rmon
+            exit
+        exit
+    exit
+#--------------------------------------------------
+echo "System Security Configuration"
+#--------------------------------------------------
+    system
+        security
+            telnet-server
+            user "admin"
+                password "$2y$10$ETQWPYSaeYYCXhoIGUL0c.067L877/46/du5Xw/rXMwVB74KEe8xq"
+                access console 
+                console
+                    member "administrative"
+                exit
+            exit
+            user "guest"
+                password "$2y$10$jKgnTGJb9sEIN7RTyoZtE.edottV0vsnSiJDryNkDV5fAEt0XvCam"
+                access console ftp snmp li netconf 
+                console
+                    member "default"
+                    member "administrative"
+                exit
+            exit
+            no per-peer-queuing
+            cpu-protection
+                link-specific-rate max
+                policy 254 create
+                exit
+                policy 255 create
+                exit
+                port-overall-rate 15000 
+            exit
+        exit
+    exit
+#--------------------------------------------------
+echo "System Login Control Configuration"
+#--------------------------------------------------
+    system
+        login-control
+            ssh
+                inbound-max-sessions 30
+            exit
+            telnet
+                inbound-max-sessions 15
+            exit
+            pre-login-message "***************************************************************** \n*      UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED         * \n*                                                               * \n*           77777  77777 55555   0000      111                  * \n*             77     77  55     00  00    1111                  * \n*            77     77   55555  00  00 --   11                  * \n*           77     77       555 00  00      11                  * \n*           77     77    55555   0000     111111                * \n*                                                               * \n*                     USERNAME :  guest                         * \n*                     PASSWORD :  password                      * \n*                                                               * \n***************************************************************** \n"
+        exit
+    exit
+#--------------------------------------------------
+echo "Log Configuration"
+#--------------------------------------------------
+    log 
+        log-id 33
+            from debug-trace 
+            to console
+            no shutdown
+        exit
+    exit 
+#--------------------------------------------------
+echo "System Security Cpm Hw Filters and PKI Configuration"
+#--------------------------------------------------
+    system
+        security
+        exit
+    exit
+#--------------------------------------------------
+echo "QoS Policy Configuration"
+#--------------------------------------------------
+    qos
+    exit
+#--------------------------------------------------
+echo "Card Configuration"
+#--------------------------------------------------
+    card 1
+        card-type iom3-xp-b
+        mda 1
+            mda-type m5-1gb-sfp-b
+            no shutdown
+        exit
+        no shutdown
+    exit
+#--------------------------------------------------
+echo "Port Configuration"
+#--------------------------------------------------
+    port 1/1/1
+        ethernet
+        exit
+        no shutdown
+    exit
+    port 1/1/2
+        shutdown
+        ethernet
+            encap-type dot1q
+        exit
+    exit
+    port 1/1/3
+        shutdown
+        ethernet
+        exit
+    exit
+    port 1/1/4
+        shutdown
+        ethernet
+        exit
+    exit
+    port 1/1/5
+        ethernet
+        exit
+        no shutdown
+    exit
+#--------------------------------------------------
+echo "System Sync-If-Timing Configuration"
+#--------------------------------------------------
+    system
+        sync-if-timing
+            begin
+            commit
+        exit
+    exit
+#--------------------------------------------------
+echo "Management Router Configuration"
+#--------------------------------------------------
+    router management
+    exit
+
+#--------------------------------------------------
+echo "Router (Network Side) Configuration"
+#--------------------------------------------------
+    router Base
+        interface "ge-1/1/1"
+            address 10.0.0.4/24
+            port 1/1/1
+            no shutdown
+        exit
+        interface "lo0"
+            address 6.6.6.6/32
+            loopback
+            no shutdown
+        exit
+        interface "system"
+            shutdown
+        exit
+        router-id 6.6.6.6
+#--------------------------------------------------
+echo "Web Portal Protocol Configuration"
+#--------------------------------------------------
+    exit
+
+#--------------------------------------------------
+echo "Service Configuration"
+#--------------------------------------------------
+    service
+        customer 1 create
+            description "Default customer"
+        exit
+    exit
+#--------------------------------------------------
+echo "Router (Service Side) Configuration"
+#--------------------------------------------------
+    router Base
+#--------------------------------------------------
+echo "WLAN Gateway Configuration"
+#--------------------------------------------------
+    exit
+
+
+exit all
+
+# Finished SUN NOV 04 15:40:27 2018 UTC

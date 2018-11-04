@@ -4,12 +4,11 @@
   connection: local
 
   tasks:
-  - name: Setting ISIS overload timeout
+  - name: Removing ISIS Overload - JUNOS
     junos_config:
       lines: 
         - set protocols isis overload timeout 300
         - set protocols isis overload advertise-high-metrics
-    register: result
-
-#  - name: print result
-#    debug: var=result
+        - set protocols isis interface lo0.0 metric 500000
+        - set protocols isis interface lo0.0 ipv6-unicast-metric 500000
+    when: ansible_network_os == "junos"
