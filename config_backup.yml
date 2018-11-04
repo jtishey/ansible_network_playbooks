@@ -1,0 +1,32 @@
+---
+- hosts: "{{ my_hosts }}"
+  gather_facts: no
+  connection: local
+
+  tasks:
+  - name: Execute "write mem" on device
+    ios_command:
+      commands:
+        - write mem 
+    when: ansible_network_os == "ios"
+  - name: Backing up Cisco IOS configuration
+    ios_config:
+      authorize: yes
+      backup: yes
+    when: ansible_network_os == "ios"
+
+  - name: Backing up Juniper configuration
+    junos_config:
+      backup: yes
+    when: ansible_network_os == "junos"
+
+  - name: Backing up Cisco XR configuration
+    iosxr_config:
+      backup: yes
+    when: ansible_network_os == "xr"
+
+  - name: Backing up Nokia configuration
+    sros_config:
+      backup: yes
+    when: ansible_network_os == "sros"
+
