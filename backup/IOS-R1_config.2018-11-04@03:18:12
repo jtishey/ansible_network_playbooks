@@ -1,0 +1,213 @@
+Building configuration...
+
+Current configuration : 4217 bytes
+!
+! Last configuration change at 19:03:03 UTC Sat Nov 3 2018 by guest
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname IOS-R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$cEo0$/M0KXrlJUc3mCqCmCq9uL0
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name lab.local
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+domain lab.com
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2835311421
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2835311421
+ revocation-check none
+ rsakeypair TP-self-signed-2835311421
+!
+!
+crypto pki certificate chain TP-self-signed-2835311421
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32383335 33313134 3231301E 170D3138 30363134 30343436 
+  30355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 38333533 
+  31313432 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 010094A0 EFE450E2 8DDC1B07 0CF620D9 4933CB3C 5C100209 81B3C098 
+  FFD089A8 CBB18E49 D83B5406 67DD5C83 D59D81B2 8DE4FE86 7228719A C11B98A6 
+  292854D7 87FCDB87 399F70FD EBB199F5 B51C52A5 A31A0DCC B3B3FFE1 9AE22189 
+  9455F449 C03F5754 603A92F3 D95F6CF0 D845E04F 59D58D22 49923029 2EEE7784 
+  5D074850 1284E0D7 48AA2365 34F6B552 6BDDB76D 8FC3B0D6 DF8E6212 1E8B9ED8 
+  6280AA09 BDDB9B2E 333F22D2 C8666A6F 4E470601 FC8E45B3 9E7B3D4B 4A05452C 
+  6AD2BB07 7A43E894 2DB1D455 623E04BD 1ACFBBAE 2F78C274 3C220E44 53A2EAAA 
+  3CC0E215 B24C697B 6393DD7A 823CC622 1D6C9284 AC94315A AE9960EB A605892D 
+  D58F00D1 010D0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 148F50B1 B34FCC1E 67E80622 F2B835F0 75DCEFFD 
+  67301D06 03551D0E 04160414 8F50B1B3 4FCC1E67 E80622F2 B835F075 DCEFFD67 
+  300D0609 2A864886 F70D0101 05050003 82010100 413658A2 B436D1E1 2AB30BDE 
+  D182B9B5 97A0FB1F B9F155DD 8B72CF26 0E2DD467 925EEDCB 4FEEFFCA 0960E4CC 
+  466CD6E4 DF300D8D 9EC8F00E 6E4E1A94 7BCDE220 BB0FA526 962C912E B8215F4D 
+  93D813CE A2156DF9 391F672A 8820702F 97C0CBFB 01A67C30 94B1B05D 2761B33D 
+  0480287B 54822440 D7260EAA 99FCD954 2AF43F22 A2ACA3D8 244AB7B5 590CA140 
+  3D72EDE8 00C6ED23 82663982 27D0E41E CADC5445 9B19D1F2 AAA577B6 97A2DC6B 
+  0CF0E665 F040D3A2 91493C19 9AF0E2F8 96FBE7C8 B49A78D5 5AD138EF 9750DB65 
+  8B2E000A E0E4894A 5DE16C67 EC7FD2A0 197CCB32 8FF4E8C8 20C0845B 1B488E5B 
+  EF2AA43C 58CDBF47 91977BC4 3B02D70A 94CF378B
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9JKCOHE0SPU
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username guest privilege 15 password 0 password
+!
+redundancy
+!
+!
+!
+!
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ ip address 10.0.0.2 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router isis backbone
+ metric-style wide
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 192.168.100.0 255.255.255.0 2.2.2.2
+ip route 192.168.100.0 255.255.255.0 2.2.2.6
+ip route 192.168.110.0 255.255.255.0 2.2.2.3
+ip route 192.168.120.0 255.255.255.0 2.2.2.4
+ip route 192.168.130.0 255.255.255.0 2.2.2.5
+ip route 192.168.150.0 255.255.255.0 2.2.2.7
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0
+ login local
+ transport input telnet ssh
+line vty 1 2
+ login local
+ length 0
+ transport input telnet ssh
+line vty 3 4
+ login local
+ transport input telnet ssh
+line vty 5 15
+ login local
+ transport input telnet ssh
+!
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+end

@@ -1,6 +1,6 @@
 ---
 - name: Get Device Facts 
-  hosts: {{ my_hosts }}
+  hosts: "{{ my_hosts }}"
   roles:
   - juniper.junos
   connection: local
