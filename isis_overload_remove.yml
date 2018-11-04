@@ -9,6 +9,6 @@
       lines: 
         - set protocols isis overload timeout 300
         - set protocols isis overload advertise-high-metrics
-        - delete protocols isis interface lo0.0 metric
-        - delete protocols isis interface lo0.0 ipv6-unicast-metric
+        - delete protocols isis interface lo0.0 level 2 metric
+        - delete protocols isis interface lo0.0 level 2 ipv6-unicast-metric
     when: ansible_network_os == "junos"
