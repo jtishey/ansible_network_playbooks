@@ -1,21 +1,21 @@
 ---
-- name: Check hosts
-  hosts: "{{ my_hosts }}"
+-  hosts: "{{ my_hosts }}"
   gather_facts: no
-  tasks:
-    - set_fact:
-        hosts_confirmed: true
-      delegate_to: localhost
-      delegate_facts: true
+  connection: local
 
-- name: Verify hosts
-  hosts: localhost
-  gather_facts: no
   tasks:
-    - assert:
+  - set_fact:
+      hosts_confirmed: true
+    delegate_to: localhost
+    delegate_facts: true
+
+  - name: Verify hosts
+    hosts: localhost
+    gather_facts: no
+    tasks:
+      - assert:
         that: hosts_confirmed | default(false)
 
-tasks:
   - name: Setting ISIS overload - JUNOS
     junos_config:
       lines: 
