@@ -1,5 +1,5 @@
 ---
-- hosts: juniper
+- hosts: {{ my_hosts }}
   gather_facts: no
   connection: local
 
@@ -7,4 +7,3 @@
   - name: Backup Juniper running configuration
     junos_config:
       backup: yes
- 
