@@ -1,5 +1,5 @@
 ---
-- hosts: juniper
+- hosts: {{ my_hosts }}
   gather_facts: no
   connection: local
 
