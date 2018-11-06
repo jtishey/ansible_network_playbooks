@@ -9,7 +9,7 @@
     register: dev_info
 
   - name: Upgrade Router
-    command: /opt/ipeng/scripts/junos_upgrade -d {{host}} -y
+    command: /opt/ipeng/scripts/junos_upgrade -d {{ansible_play_hosts}} -y
     delegate_to: localhost
     register: result
 

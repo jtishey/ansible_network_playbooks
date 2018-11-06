@@ -5,4 +5,4 @@
 
   tasks:
   - name: Print Vars
-    debug: msg"{{ vars }}"
+    debug: msg="{{ vars }}"
