@@ -1,0 +1,17 @@
+---
+- hosts: {{ my_hosts }}
+  gather_facts: no
+  connection: local
+
+  tasks:
+  - name: Get Device Info
+    junos_facts:
+    register: dev_info
+
+  - name: Upgrade Router
+    command: /opt/ipeng/scripts/junos_upgrade -d {{host}} -y
+    delegate_to: localhost
+    register: result
+
+  - name: Upgrade Results
+    debug: msg="{{result.stdout}}"
