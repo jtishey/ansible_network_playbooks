@@ -1,0 +1,8 @@
+---
+- hosts: "{{ my_hosts }}"
+  gather_facts: no
+  connection: local
+
+  tasks:
+  - name: Print Vars
+    debug: msg"{{ vars }}"
